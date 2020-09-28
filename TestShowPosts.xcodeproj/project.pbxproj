@@ -72,6 +72,8 @@
 		9A2C6DEE25222C2600A49875 /* MockRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C6DED25222C2600A49875 /* MockRequest.swift */; };
 		9A2C6DF625222C7F00A49875 /* PostRequestTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C6DF525222C7F00A49875 /* PostRequestTests.swift */; };
 		9A2C6E072522350400A49875 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C6E062522350400A49875 /* UIViewController+Alert.swift */; };
+		9A2C6E0F2522750500A49875 /* OrderBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C6E0E2522750500A49875 /* OrderBy.swift */; };
+		9A2C6E172522770A00A49875 /* ListSegmentedControlHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2C6E162522770A00A49875 /* ListSegmentedControlHandler.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -163,6 +165,8 @@
 		9A2C6DED25222C2600A49875 /* MockRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockRequest.swift; sourceTree = "<group>"; };
 		9A2C6DF525222C7F00A49875 /* PostRequestTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostRequestTests.swift; sourceTree = "<group>"; };
 		9A2C6E062522350400A49875 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
+		9A2C6E0E2522750500A49875 /* OrderBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBy.swift; sourceTree = "<group>"; };
+		9A2C6E162522770A00A49875 /* ListSegmentedControlHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSegmentedControlHandler.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -335,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				9A2C6C37251F3B0500A49875 /* ContentType.swift */,
+				9A2C6E0E2522750500A49875 /* OrderBy.swift */,
 				9A2C6CF1251F953A00A49875 /* ServerField.swift */,
 			);
 			path = Enum;
@@ -481,6 +486,7 @@
 				9A2C6D46251FCFD100A49875 /* ListController.swift */,
 				9A2C6D692520697F00A49875 /* ListCoordinator.swift */,
 				9A2C6D4B251FD00100A49875 /* ListProtocols.swift */,
+				9A2C6E162522770A00A49875 /* ListSegmentedControlHandler.swift */,
 				9A2C6D8A25207FF200A49875 /* ListTableViewHandler.swift */,
 				9A2C6B9F251E2B4700A49875 /* ListViewController.swift */,
 			);
@@ -671,6 +677,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A2C6CD9251F6FA900A49875 /* ResponseError.swift in Sources */,
+				9A2C6E172522770A00A49875 /* ListSegmentedControlHandler.swift in Sources */,
 				9A2C6D22251FCB4000A49875 /* BaseLabel.swift in Sources */,
 				9A2C6D62251FD2BA00A49875 /* AppCoordinator.swift in Sources */,
 				9A2C6D09251FB94000A49875 /* PostTableViewCell.swift in Sources */,
@@ -699,6 +706,7 @@
 				9A2C6C19251E494600A49875 /* APIPost.swift in Sources */,
 				9A2C6C1E251E4CCE00A49875 /* Author.swift in Sources */,
 				9A2C6CF7251F9B3900A49875 /* PostNetworkRepository.swift in Sources */,
+				9A2C6E0F2522750500A49875 /* OrderBy.swift in Sources */,
 				9A2C6C55251F421E00A49875 /* ImageService.swift in Sources */,
 				9A2C6D52251FD14200A49875 /* CoordinatorProtocol.swift in Sources */,
 				9A2C6C8E251F6C0B00A49875 /* Result.swift in Sources */,

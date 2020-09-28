@@ -48,6 +48,11 @@ final class ListTableViewHandler: NSObject {
         tableView?.endUpdates()
     }
     
+    func clearData() {
+        posts.removeAll()
+        tableView?.reloadData()
+    }
+    
     // MARK: - Private helpers
     
     private func calculateIndexPathsToReload(from posts: [Post]) -> [IndexPath] {

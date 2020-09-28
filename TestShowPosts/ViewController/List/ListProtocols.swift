@@ -8,12 +8,11 @@
 import Foundation
 
 protocol ListViewProtocol: class {
-//    func handleLoginFinished(with result: LoginResult)
     func handleDataReloadSuccess(models: [Post])
     func handle(error: Error)
 }
 
 protocol ListControllerProtocol: class {
     var view: ListViewProtocol? { get set }
-    func reloadData()
+    func reloadData(orderBy: OrderBy)
 }

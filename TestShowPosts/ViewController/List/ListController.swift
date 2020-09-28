@@ -25,8 +25,8 @@ final class ListController: ListControllerProtocol {
 
     // MARK: - ListControllerProtocol
     
-    func reloadData() {
-        postService.getPosts { [weak self] result in
+    func reloadData(orderBy: OrderBy) {
+        postService.getPosts(orderBy: orderBy) { [weak self] result in
             switch result {
             case .success(let models):
                 self?.view?.handleDataReloadSuccess(models: models)

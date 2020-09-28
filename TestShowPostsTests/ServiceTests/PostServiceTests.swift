@@ -30,7 +30,7 @@ class PostServiceTests: XCTestCase {
         networkRepository.isSuccess = true
         
         // When
-        sut.getPosts { result in
+        sut.getPosts(orderBy: .createdAt) { result in
             
             if case .failure = result {
                 // Then
@@ -45,7 +45,7 @@ class PostServiceTests: XCTestCase {
         networkRepository.isSuccess = false
         
         // When
-        sut.getPosts { result in
+        sut.getPosts(orderBy: .createdAt) { result in
             
             if case .success = result {
                 // Then
@@ -62,7 +62,7 @@ class PostServiceTests: XCTestCase {
         XCTAssertNil(networkRepository.cursor)
 
         // When
-        sut.getPosts { _ in
+        sut.getPosts(orderBy: .createdAt) { _ in
             
             // Then
             XCTAssertNotNil(self.networkRepository.cursor)

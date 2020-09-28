@@ -34,9 +34,6 @@ enum ServiceRegisteringHelper {
     }
     
     private static func registerImageServices() {
-        serviceLocator.register(UIImageLoaderProtocol.self) {
-            UIImageLoader(imageService: serviceLocator.get())
-        }
         serviceLocator.register(ImageServiceProtocol.self) {
             ImageService(imageCache: serviceLocator.get())
         }

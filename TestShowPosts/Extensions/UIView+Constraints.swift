@@ -100,24 +100,24 @@ extension UIView {
     
     private var widthConstraint: NSLayoutConstraint? {
         // you should not add more than one required widthConstraint to your view
-        return self.constraints.first(where: { $0.firstAttribute == .width && $0.priority == .required })
+        return constraints.first(where: { $0.firstAttribute == .width && $0.priority == .required })
     }
 
     private var heightConstraint: NSLayoutConstraint? {
         // you should not add more than one required widthConstraint to your view
-        return self.constraints.first(where: { $0.firstAttribute == .height && $0.priority == .required })
+        return constraints.first(where: { $0.firstAttribute == .height && $0.priority == .required })
     }
 
     var widthConstraintConstant: CGFloat? {
 
         get {
-            return self.widthConstraint?.constant
+            return widthConstraint?.constant
         }
         set {
             // setting active to false will delete the constraint immediately
-            self.widthConstraint?.isActive = false
+            widthConstraint?.isActive = false
             if let width = newValue {
-                self.widthAnchor.constraint(equalToConstant: width).isActive = true
+                widthAnchor.constraint(equalToConstant: width).isActive = true
             }
         }
     }
@@ -125,13 +125,13 @@ extension UIView {
     var heightConstraintConstant: CGFloat? {
 
         get {
-            return self.heightConstraint?.constant
+            return heightConstraint?.constant
         }
         set {
             // setting active to false will delete the constraint immediately
-            self.heightConstraint?.isActive = false
+            heightConstraint?.isActive = false
             if let height = newValue {
-                self.heightAnchor.constraint(equalToConstant: height).isActive = true
+                heightAnchor.constraint(equalToConstant: height).isActive = true
             }
         }
     }

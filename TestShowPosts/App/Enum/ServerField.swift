@@ -9,5 +9,6 @@ import Foundation
 
 struct ServerField {
     
+    static let orderBy = "orderBy"
     static let after = "after"
 }

@@ -14,16 +14,14 @@ protocol UIImageLoaderProtocol {
 
 final class UIImageLoader: UIImageLoaderProtocol {
     
+    // MARK: - Internal properties
+    
+    static let shared = UIImageLoader()
+    
     // MARK: - Private properties
     
-    private let imageService: ImageServiceProtocol
+    private let imageService: ImageServiceProtocol = ServiceLocator.shared.get()
     private var uuidMap: [UIImageView: UUID] = [:]
-    
-    // MARK: - Initialization
-    
-    init(imageService: ImageServiceProtocol) {
-        self.imageService = imageService
-    }
     
     // MARK: - UIImageLoaderProtocol
     

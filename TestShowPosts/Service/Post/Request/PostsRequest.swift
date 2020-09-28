@@ -11,6 +11,7 @@ struct PostsRequest: Request {
     
     // MARK: - Properties
     
+    let orderBy: OrderBy
     let cursor: String?
     
     // MARK: - Request
@@ -21,7 +22,8 @@ struct PostsRequest: Request {
     
     var parameters: [String: Any]? {
         
-        var result: [String: Any] = [:]
+        var result = [ServerField.orderBy: orderBy.rawValue]
+
         if let cursor = cursor {
             result[ServerField.after] = cursor
         }

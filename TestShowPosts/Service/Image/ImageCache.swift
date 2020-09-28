@@ -25,8 +25,8 @@ final class ImageCache: ImageCacheProtocol {
     
     // MARK: - Private properties
 
-    private lazy var decodedImageCache: NSCache<AnyObject, AnyObject> = {
-        let cache = NSCache<AnyObject, AnyObject>()
+    private lazy var decodedImageCache: NSCache<NSURL, UIImage> = {
+        let cache = NSCache<NSURL, UIImage>()
         cache.totalCostLimit = 1024 * 1024 * 100 // 100MB
         return cache
     }()
@@ -38,7 +38,7 @@ final class ImageCache: ImageCacheProtocol {
         
         lock.lock(); defer { lock.unlock() }
         
-        if let decodedImage = decodedImageCache.object(forKey: url as AnyObject) as? UIImage {
+        if let decodedImage = decodedImageCache.object(forKey: url as NSURL) {
             return decodedImage
         }
         
@@ -52,12 +52,12 @@ final class ImageCache: ImageCacheProtocol {
         let decompressedImage = image.decodedImage()
 
         lock.lock(); defer { lock.unlock() }
-        decodedImageCache.setObject(image as AnyObject, forKey: url as AnyObject, cost: decompressedImage.diskSize)
+        decodedImageCache.setObject(image as UIImage, forKey: url as NSURL, cost: decompressedImage.diskSize)
     }
     
     func removeImage(for url: URL) {
         lock.lock(); defer { lock.unlock() }
-        decodedImageCache.removeObject(forKey: url as AnyObject)
+        decodedImageCache.removeObject(forKey: url as NSURL)
     }
     
     func removeAllImages() {

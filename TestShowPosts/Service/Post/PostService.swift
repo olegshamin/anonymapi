@@ -8,7 +8,7 @@
 import Foundation
 
 protocol PostServiceProtocol: Service {
-    func getPosts(completion: @escaping ResultHandler<[Post]>)
+    func getPosts(orderBy: OrderBy, completion: @escaping ResultHandler<[Post]>)
 }
 
 final class PostService: PostServiceProtocol {
@@ -16,6 +16,7 @@ final class PostService: PostServiceProtocol {
     // MARK: - Private properties
     
     private let networkRepository: PostNetworkRepositoryProtocol
+    private var previousOrder = OrderBy.createdAt
     private var cursor: String?
     
     // MARK: - Initialization
@@ -29,10 +30,18 @@ final class PostService: PostServiceProtocol {
     // MARK: - PostServiceProtocol
     
     func getPosts(
+        orderBy: OrderBy,
         completion: @escaping ResultHandler<[Post]>
     ) {
 
-        let request = PostsRequest(cursor: cursor)
+        if previousOrder != orderBy {
+            
+            // Clear cursor if user change orderBy
+            cursor = nil
+        }
+        previousOrder = orderBy
+
+        let request = PostsRequest(orderBy: orderBy, cursor: cursor)
         
         DispatchQueue.global(qos: .background).async {
             self.networkRepository.getPosts(request: request) { [weak self] result in

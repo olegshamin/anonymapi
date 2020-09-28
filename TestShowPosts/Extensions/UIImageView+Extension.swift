@@ -10,12 +10,10 @@ import UIKit
 extension UIImageView {
     
     func loadImage(at url: URL?) {
-        let loader: UIImageLoaderProtocol = ServiceLocator.shared.get()
-        loader.load(url, for: self)
+        UIImageLoader.shared.load(url, for: self)
     }
     
     func cancelImageLoad() {
-        let loader: UIImageLoaderProtocol = ServiceLocator.shared.get()
-        loader.cancel(for: self)
+        UIImageLoader.shared.cancel(for: self)
     }
 }
