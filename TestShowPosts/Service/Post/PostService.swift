@@ -33,6 +33,7 @@ final class PostService: PostServiceProtocol {
         completion: @escaping ResultHandler<[Post]>
     ) {
 
+        // if cursor not nil and empty it means that we downloaded every post in specific order
         if let cursor = cursors[orderBy], cursor.isEmpty {
             return
         }
