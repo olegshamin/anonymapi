@@ -94,7 +94,7 @@ final class ListViewController: UIViewController {
 extension ListViewController: ListViewProtocol {
     
     func handleDataReloadSuccess(models: [Post]) {
-        tableViewHandler.reload(with: models)
+        tableViewHandler.reload(with: models, orderBy: segmentedControlHandler.selectedOrder)
         tableView.tableFooterView?.isHidden = true
     }
     
@@ -121,7 +121,10 @@ extension ListViewController: ListTableViewHandlerDelegate {
 
 extension ListViewController: ListSegmentedControlHandlerDelegate {
     func didSelect(order: OrderBy) {
-        tableViewHandler.clearData()
-        controller.reloadData(orderBy: segmentedControlHandler.selectedOrder)
+        tableViewHandler.reloadData(orderBy: order)
+        
+        if tableViewHandler.postsCount(orderBy: order) == 0 {
+            controller.reloadData(orderBy: segmentedControlHandler.selectedOrder)
+        }
     }
 }

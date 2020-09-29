@@ -16,8 +16,7 @@ final class PostService: PostServiceProtocol {
     // MARK: - Private properties
     
     private let networkRepository: PostNetworkRepositoryProtocol
-    private var previousOrder = OrderBy.createdAt
-    private var cursor: String?
+    private var cursors: [OrderBy: String] = [:]
     
     // MARK: - Initialization
     
@@ -34,18 +33,15 @@ final class PostService: PostServiceProtocol {
         completion: @escaping ResultHandler<[Post]>
     ) {
 
-        if previousOrder != orderBy {
-            
-            // Clear cursor if user change orderBy
-            cursor = nil
+        if let cursor = cursors[orderBy], cursor.isEmpty {
+            return
         }
-        previousOrder = orderBy
 
-        let request = PostsRequest(orderBy: orderBy, cursor: cursor)
+        let request = PostsRequest(orderBy: orderBy, cursor: cursors[orderBy])
         
         DispatchQueue.global(qos: .background).async {
             self.networkRepository.getPosts(request: request) { [weak self] result in
-                self?.handle(result: result, completion: completion)
+                self?.handle(result: result, orderBy: orderBy, completion: completion)
             }
         }
     }
@@ -54,12 +50,14 @@ final class PostService: PostServiceProtocol {
     
     private func handle(
         result: Result<APIPost, Error>,
+        orderBy: OrderBy,
         completion: @escaping ResultHandler<[Post]>
     ) {
         switch result {
         case .success(let apiPost):
             let posts = APIToPresentationMapper.map(apiPost: apiPost)
-            cursor = apiPost.data?.cursor
+            
+            cursors[orderBy] = apiPost.data?.cursor ?? ""
             handle(success: posts, completion: completion)
             
         case .failure(let error):
